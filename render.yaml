@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: invetorycal
+    env: node
+    plan: starter
+    autoDeploy: true
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: CHEQROOM_API_KEY
+        sync: false
+      - key: CHEQROOM_LINKED_USER_ID
+        sync: false
+      - key: CALENDAR_FEED_SECRET
+        sync: false
+      - key: CHEQROOM_BASE_URL
+        value: https://api.cheqroom.com/api/v2_5
+      - key: CALENDAR_TIMEZONE
+        value: America/Chicago
+      - key: CHEQROOM_TIMESTAMPS_AS_LOCAL
+        value: "true"
+      - key: CALENDAR_EVENT_DURATION_MINUTES
+        value: "5"
+      - key: CALENDAR_START_DATE
+        value: "2026-04-01"
+      - key: CALENDAR_REFRESH_MINUTES
+        value: "60"
+      - key: CALENDAR_LOOKAHEAD_DAYS
+        value: "365"
